@@ -1,5 +1,7 @@
 package ooad.assign.topquiz.models;
 
+import ooad.assign.topquiz.DAO.QuestionsDAO;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,7 +12,8 @@ public class Test {
 
     }
     public List<Question> attendTest(){
-        return null;
+        QuestionsDAO questionsDAO = new QuestionsDAO();
+        return questionsDAO.getQuestions();
     }
 
     public Score calculateScore(){
