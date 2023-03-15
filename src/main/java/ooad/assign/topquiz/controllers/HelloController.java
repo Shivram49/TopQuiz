@@ -1,4 +1,4 @@
-package ooad.assign.topquiz;
+package ooad.assign.topquiz.controllers;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.stage.Stage;
+import ooad.assign.topquiz.HelloApplication;
 
 import java.io.IOException;
 

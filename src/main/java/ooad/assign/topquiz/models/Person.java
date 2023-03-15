@@ -2,6 +2,8 @@ package ooad.assign.topquiz.models;
 
 import ooad.assign.topquiz.services.PersonInterface;
 
+import java.util.List;
+
 public class Person implements PersonInterface {
     private int name;
 
@@ -32,7 +34,7 @@ public class Person implements PersonInterface {
     }
 
     @Override
-    public Score displayPerformance() {
+    public Score viewPerformance(List<String> answers) {
         return null;
     }
 }

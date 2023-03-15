@@ -36,6 +36,7 @@ public class QuizController  {
     private  Student student;
     private Iterator<Question> questionIterator;
     private int correctAnswersCount;
+    private String originalButtonColor;
 
     public QuizController() {
         student = new Student(1);
@@ -50,6 +51,7 @@ public class QuizController  {
         updateQuestion();
 //        currentQuestion = questionIterator.next();
 
+         originalButtonColor = button1.getStyle();
 
 //        // Create UI elements
 //         questionLabel = new Label(currentQuestion.getQuestion());
@@ -66,24 +68,30 @@ public class QuizController  {
             if (currentQuestion.getCorrectAnswer().equals(button1.getText())) {
                 correctAnswersCount++;
             }
+            button1.setStyle("-fx-background-color: green;");
         });
 
         button2.setOnAction(event -> {
             if (currentQuestion.getCorrectAnswer().equals(button2.getText())) {
                 correctAnswersCount++;
             }
+            button2.setStyle("-fx-background-color: green;");
+
         });
 
         button3.setOnAction(event -> {
             if (currentQuestion.getCorrectAnswer().equals(button3.getText())) {
                 correctAnswersCount++;
             }
+            button3.setStyle("-fx-background-color: green;");
+
         });
 
         button4.setOnAction(event -> {
             if (currentQuestion.getCorrectAnswer().equals(button4.getText())) {
                 correctAnswersCount++;
             }
+            button4.setStyle("-fx-background-color: green;");
         });
         // Set up the next button behavior
         nextButton.setOnAction(event -> {
@@ -108,6 +116,15 @@ public class QuizController  {
         button2.setText(currentQuestion.getAnswer().get(1));
         button3.setText(currentQuestion.getAnswer().get(2));
         button4.setText(currentQuestion.getAnswer().get(3));
+
+
+        //reset colors
+        button1.setStyle(originalButtonColor);
+        button2.setStyle(originalButtonColor);
+        button3.setStyle(originalButtonColor);
+        button4.setStyle(originalButtonColor);
+
+
     }
 
 
