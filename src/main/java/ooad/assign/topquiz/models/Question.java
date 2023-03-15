@@ -9,7 +9,7 @@ public class Question {
     private List<String> answer;
     private String correctAnswer;
 
-    public Question(String id,String topic,String question, List<String> answer,String correctAnswer) {
+    public Question(String id, String topic, String question,List<String> answer, String correctAnswer) {
         this.id = id;
         this.question = question;
         this.answer = answer;
