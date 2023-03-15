@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ooad.assign.topquiz.QuizController">
+   <children>
+      <Label fx:id="questionLabel" layoutX="62.0" layoutY="59.0" prefHeight="67.0" prefWidth="404.0" style="-fx-background-color: red;" />
+      <Button fx:id="button1" layoutX="61.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" />
+      <Button fx:id="button2" layoutX="300.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" />
+      <Button fx:id="button3" layoutX="61.0" layoutY="269.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" />
+      <Button fx:id="button4" layoutX="301.0" layoutY="269.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" />
+      <Button fx:id="nextButton" layoutX="504.0" layoutY="361.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Next" />
+      <Label fx:id="Finalscore" layoutX="61.0" layoutY="363.0" prefHeight="26.0" prefWidth="82.0" text="Final Score " />
+   </children>
+</AnchorPane>
