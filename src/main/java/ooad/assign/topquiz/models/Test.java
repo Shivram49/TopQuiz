@@ -6,17 +6,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Test {
-    private ArrayList<Question> questions;
+    private List<Question> questions;
 
     public void setQuestions(){
 
     }
     public List<Question> attendTest(){
         QuestionsDAO questionsDAO = new QuestionsDAO();
-        return questionsDAO.getQuestions();
+        questions = questionsDAO.getQuestions();
+        return questions;
     }
 
-    public Score calculateScore(){
+    public Score calculateScore(List<String> answers){
+
         return null;
     }
 }

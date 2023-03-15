@@ -11,7 +11,9 @@ public class Student extends Person{
     public List<Question> attendTest(){
         return test.attendTest();
     }
-    public Score viewPerformance(){
-        return test.calculateScore();
+
+    @Override
+    public Score viewPerformance(List<String>  answers){
+        return test.calculateScore(answers);
     }
 }
