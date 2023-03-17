@@ -1,5 +1,6 @@
 package ooad.assign.topquiz.models;
 
+
 import ooad.assign.topquiz.DAO.StudentDAO;
 
 import java.util.Arrays;
@@ -8,6 +9,8 @@ import java.util.List;
 public class Student{
     private Test test;
     private String id;
+
+
     private String name;
     private Performance performance;
     StudentDAO studentDAO;
@@ -18,6 +21,10 @@ public class Student{
         this.name = name;
         studentDAO = new StudentDAO();
     }
+    public String getName() {
+        return name;
+    }
+
 
     public List<Question> attendTest(){
         return test.attendTest();
