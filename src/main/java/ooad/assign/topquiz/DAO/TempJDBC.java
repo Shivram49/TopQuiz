@@ -13,6 +13,6 @@ public class TempJDBC {
     }
 
     public static void main(String[] args) {
-        new Test().attendTest().stream().forEach(System.out::println);
+        System.out.println((new StudentDAO()).getStudent("Alice","password123"));
     }
 }

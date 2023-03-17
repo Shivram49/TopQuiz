@@ -27,7 +27,7 @@ public class QuestionsDAO {
         cols.add("answer4");
         cols.add("correct_answer1");
 
-        List<List<String>> res = jdbcTemplate.get("select * from questions",cols);
+        List<List<String>> res = jdbcTemplate.getAll("select * from questions",cols);
         for(List<String> row : res){
             List<String> answers = new ArrayList<>();
             int startIndex = 3;

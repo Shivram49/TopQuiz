@@ -1,19 +1,48 @@
 package ooad.assign.topquiz.models;
 
+import ooad.assign.topquiz.DAO.StudentDAO;
+
+import java.util.Arrays;
 import java.util.List;
 
-public class Student extends Person{
+public class Student{
     private Test test;
-    public Student(int name) {
-        super(name);
-        test = new Test();
+    private String id;
+    private String name;
+    private Performance performance;
+    StudentDAO studentDAO;
+
+    public Student(Test test, String id, String name) {
+        this.test = test;
+        this.id = id;
+        this.name = name;
+        studentDAO = new StudentDAO();
     }
+
     public List<Question> attendTest(){
         return test.attendTest();
     }
 
+    public void submitAnswers(List<String> answers){
+        this.performance = test.submitAnswers(answers);
+        //use existing services to push this into database.
+        studentDAO.setPerformance(this.performance);
+    }
+
+    public Performance getPerformance(){
+        if(this.performance == null){
+            return this.performance = studentDAO.getPerformance(this.id);
+        }
+        return this.performance;
+    }
+
     @Override
-    public Score viewPerformance(List<String>  answers){
-        return test.calculateScore(answers);
+    public String toString() {
+        return "Student{" +
+                "test=" + test +
+                ", id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", performance=" + performance +
+                '}';
     }
 }
