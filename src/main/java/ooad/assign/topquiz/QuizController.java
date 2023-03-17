@@ -10,6 +10,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import ooad.assign.topquiz.models.Question;
 import ooad.assign.topquiz.models.Student;
+import ooad.assign.topquiz.services.StudentService;
 
 import java.util.Iterator;
 import java.util.List;
@@ -39,7 +40,7 @@ public class QuizController  {
     private String originalButtonColor;
 
     public QuizController() {
-        student = new Student(1);
+        student = StudentService.login("Alice","password123");
         List<Question> questions = student.attendTest();
         questionIterator = questions.iterator();
         correctAnswersCount = 0;
