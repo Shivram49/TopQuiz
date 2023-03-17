@@ -77,7 +77,8 @@ public class JDBCTemplate {
         for(int i = 0;i < values.size() - 1;i++){
             sqlStatement += "'" + values.get(i) + "',";
         }
-        sqlStatement += ")";
+        sqlStatement += "'" + values.get(values.size()-1) + "')";
+        System.out.println(sqlStatement);
         return sqlStatement;
     }
     public void save(String tableName,List<String> cols,List<String> values){
