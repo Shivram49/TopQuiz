@@ -22,6 +22,9 @@ public class QuizPerformance {
     @FXML
     Label studentName;
 
+    @FXML
+    Label totalScore;
+
 
     private Student student;
 
@@ -39,20 +42,14 @@ public class QuizPerformance {
 
         performance = student.getPerformance();
 
-
-//                HashMap<String,Integer> map = new HashMap<>();
-//        map.put("Tree",10);
-//        map.put("Car",5);
+        totalScore.setText(performance.getScore() + " / " + performance.getMaxScore());
 
 
         ObservableList<PieChart.Data> pieChartData = FXCollections.observableArrayList(
-//                new PieChart.Data("Math Score : ", performance.getMathScore()),
-//                new PieChart.Data("English Score : ", performance.getEnglishScore()),
-//                new PieChart.Data("Science Score : ", performance.getScienceScore())
+                new PieChart.Data("Math Score : ", performance.getMathScore()),
+                new PieChart.Data("English Score : ", performance.getEnglishScore()),
+                new PieChart.Data("Science Score : ", performance.getScienceScore())
 
-                new PieChart.Data("Math Score : ", 10),
-                new PieChart.Data("English Score : ", 20),
-                new PieChart.Data("Science Score : ", 30)
                 );
 
 //        for (String key : map.keySet()) {
