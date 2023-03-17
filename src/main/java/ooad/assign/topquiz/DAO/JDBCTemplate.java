@@ -50,6 +50,8 @@ public class JDBCTemplate {
             for(int i = 0; i < values.size();i++) {
                 stmt.setString(i + 1, values.get(i));
             }
+            System.out.println("Statement being executed");
+            System.out.println(stmt);
             try {
                 ResultSet rs = stmt.executeQuery();
                 while(rs.next()){
@@ -81,6 +83,20 @@ public class JDBCTemplate {
         System.out.println(sqlStatement);
         return sqlStatement;
     }
+
+    public String  createSelectStatementWithWhereAnd(String tableName,List<String> cols,List<String> values){
+        String sqlStatement = "Select ";
+        for(int i = 0;i < cols.size() - 1;i++){
+            sqlStatement += cols.get(i) + ",";
+        }
+        sqlStatement += cols.get(cols.size() - 1) + " from " + tableName + " where ";
+        for(int i = 0;i < values.size() - 1;i++){
+            sqlStatement += values.get(i) + "= ? and ";
+        }
+        sqlStatement += values.get(values.size()-1) + " = ?";
+        return sqlStatement;
+    }
+
     public void save(String tableName,List<String> cols,List<String> values){
         String sqlStatement = createInsertStatement(tableName,cols,values);
         try (Connection conn = DriverManager.getConnection(this.url);

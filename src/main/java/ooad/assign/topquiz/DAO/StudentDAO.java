@@ -34,9 +34,10 @@ public class StudentDAO {
 
     public Performance getPerformance(String id){
         List<String> cols = Arrays.asList("total_score","math_score","science_score","english_score");
-        List<String> values = Arrays.asList("total_score","math_score","science_score","english_score",id);
-        List<String> res = jdbcTemplate.getByValue("select ?,?,?,? from performance where student_id = ?", cols,values);
-        System.out.println(res);
+        List<String> valueCheck = Arrays.asList("student_id");
+        List<String> values = Arrays.asList(id);
+        String sqlStatement = jdbcTemplate.createSelectStatementWithWhereAnd("performance",cols,valueCheck);
+        List<String> res = jdbcTemplate.getByValue(sqlStatement, cols,values);
         if(res.size() != 0)
             return  new Performance(Integer.parseInt(res.get(0)),Integer.parseInt(res.get(1)),Integer.parseInt(res.get(2)),Integer.parseInt(res.get(3)),9);
         return null;
