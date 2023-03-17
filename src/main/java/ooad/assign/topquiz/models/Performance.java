@@ -7,6 +7,8 @@ public class Performance {
     private int mathScore;
     private int scienceScore;
     private int englishScore;
+
+
     private int maxScore;
 
     public Performance(int score, int mathScore, int scienceScore, int englishScore, int maxScore) {
@@ -35,6 +37,10 @@ public class Performance {
     public void setScore(int score) {
         this.score = score;
     }
+    public int getMaxScore() {
+        return maxScore;
+    }
+
 
     public void addScore(int pointsToAdd){
         this.score += pointsToAdd;
