@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.chart.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label fx:id="titleLabel" alignment="BOTTOM_CENTER" layoutX="135.0" layoutY="89.0" prefHeight="34.0" prefWidth="283.0" text="Performance Analysis" textAlignment="CENTER" textFill="#a81414" />
+      <PieChart fx:id="pieChart" layoutX="118.0" layoutY="132.0" prefHeight="240.0" prefWidth="391.0" />
+      <Label fx:id="studentName" layoutX="67.0" layoutY="35.0" prefHeight="18.0" prefWidth="214.0" text="Student name : " />
+   </children>
+</AnchorPane>
