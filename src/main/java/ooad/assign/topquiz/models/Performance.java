@@ -21,6 +21,17 @@ public class Performance {
         return score;
     }
 
+    @Override
+    public String toString() {
+        return "Performance{" +
+                "score=" + score +
+                ", mathScore=" + mathScore +
+                ", scienceScore=" + scienceScore +
+                ", englishScore=" + englishScore +
+                ", maxScore=" + maxScore +
+                '}';
+    }
+
     public void setScore(int score) {
         this.score = score;
     }
@@ -52,4 +63,6 @@ public class Performance {
     public void setEnglishScore(int englishScore) {
         this.englishScore = englishScore;
     }
+
+
 }

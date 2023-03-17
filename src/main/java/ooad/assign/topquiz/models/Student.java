@@ -26,7 +26,7 @@ public class Student{
     public void submitAnswers(List<String> answers){
         this.performance = test.submitAnswers(answers);
         //use existing services to push this into database.
-        studentDAO.setPerformance(this.performance);
+        studentDAO.setPerformance(this.performance,this.id);
     }
 
     public Performance getPerformance(){
