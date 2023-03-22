@@ -1,7 +1,9 @@
 package ooad.assign.topquiz;
-
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -11,11 +13,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 import ooad.assign.topquiz.models.Question;
-import ooad.assign.topquiz.models.Score;
 import ooad.assign.topquiz.models.Student;
 import ooad.assign.topquiz.models.Test;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -42,20 +45,30 @@ public class QuizController  {
     @FXML
     private Label studentName;
 
+    @FXML
+    private Label timerLabel;
+
+    private static final Integer STARTTIME = 5;
+    private Timeline timeline;
+    private Integer timeSeconds = STARTTIME;
+
+
     private Question currentQuestion;
     private  Student student;
     private Iterator<Question> questionIterator;
 
+    private boolean isTestClosed = false;
 
-    private Score finalScore ;
     private int correctAnswersCount;
     private String originalButtonColor;
 
+    private int questionCount;
     public List<String> resultString;
 
     public QuizController(Student student) {
         this.student = student;
         List<Question> questions = student.attendTest();
+        questionCount = questions.size();
         questionIterator = questions.iterator();
         correctAnswersCount = 0;
         resultString = new ArrayList<>();
@@ -68,6 +81,26 @@ public class QuizController  {
 //        currentQuestion = questionIterator.next();
 
          originalButtonColor = button1.getStyle();
+         timerLabel.setText(String.valueOf(timeSeconds));
+         timeline = new Timeline();
+         timeline.setCycleCount(Timeline.INDEFINITE);
+         timeline.getKeyFrames().add(
+                new KeyFrame(Duration.seconds(1),
+                        new EventHandler() {
+                            @Override
+                            public void handle(Event event) {
+                                timeSeconds--;
+                                // update timerLabel
+                                timerLabel.setText(
+                                        timeSeconds.toString());
+                                if (timeSeconds <= 0) {
+                                    timeline.stop();
+                                    if(!isTestClosed)
+                                        finishButton.fire();
+                                }
+                            }
+                        }));
+        timeline.playFromStart();
 
 //        // Create UI elements
 //         questionLabel = new Label(currentQuestion.getQuestion());
@@ -144,16 +177,24 @@ public class QuizController  {
 
 
         finishButton.setOnAction(actionEvent -> {
-
+            isTestClosed = true;
+            if(resultString.size() < questionCount){
+                int sizeOfResult = resultString.size();
+                for(int i = 0;i < questionCount - sizeOfResult;i++){
+                    resultString.add("");
+                }
+            }
+            System.out.println(resultString.size());
+            System.out.println(questionCount);
             student.submitAnswers(resultString);
 
 
             try {
                 Stage thisStage = (Stage) ((Button)actionEvent.getSource()).getScene().getWindow();
-                thisStage.close();
+        thisStage.close();
 
                 FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("studentPermormance-view.fxml"));
-                fxmlLoader.setController(new QuizPerformance(student));
+                fxmlLoader.setController(new QuizPerformance(this.student));
                 Scene scene = new Scene(fxmlLoader.load());
                 Stage currStage = new Stage();
                 currStage.setScene(scene);
@@ -187,8 +228,6 @@ public class QuizController  {
         button2.setStyle(originalButtonColor);
         button3.setStyle(originalButtonColor);
         button4.setStyle(originalButtonColor);
-
-
     }
 
 

@@ -3,6 +3,7 @@ package ooad.assign.topquiz.models;
 import ooad.assign.topquiz.DAO.QuestionsDAO;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.IntStream;
 
@@ -19,6 +20,9 @@ public class Test {
     }
 
     public Performance submitAnswers(List<String> answers){
+        if(answers == null || answers.size() != questions.size()){
+            return new Performance(0,0,0,0,questions.size());
+        }
         int mathScore = 0,scienceScore = 0,englishScore = 0;
 //        int totalMath = (int)questions.stream().filter(i->i.getTopic().equals("math")).count();
 //        int totalScience = (int)questions.stream().filter(i->i.getTopic().equals("science")).count();
