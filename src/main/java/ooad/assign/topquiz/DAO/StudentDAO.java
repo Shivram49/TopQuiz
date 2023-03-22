@@ -36,10 +36,24 @@ public class StudentDAO {
         List<String> cols = Arrays.asList("total_score","math_score","science_score","english_score");
         List<String> valueCheck = Arrays.asList("student_id");
         List<String> values = Arrays.asList(id);
-        String sqlStatement = jdbcTemplate.createSelectStatementWithWhereAnd("performance",cols,valueCheck);
-        List<String> res = jdbcTemplate.getByValue(sqlStatement, cols,values);
+        String sqlStatement = jdbcTemplate.createSelectStatementWithWhereAnd("performance",cols,valueCheck) ;
+        List<String> res = jdbcTemplate.getByIntValue(sqlStatement, cols,values);
         if(res.size() != 0)
             return  new Performance(Integer.parseInt(res.get(0)),Integer.parseInt(res.get(1)),Integer.parseInt(res.get(2)),Integer.parseInt(res.get(3)),9);
         return null;
     }
+    public List<Performance> getAllPerformances(){
+        List<Performance> performances = new ArrayList<>();
+        ArrayList<String> cols = new ArrayList<>();
+        cols.add("total_score");
+        cols.add("math_score");
+        cols.add("science_score");
+        cols.add("english_score");
+        List<List<String>> res = jdbcTemplate.getAll("select * from performance",cols);
+        for(List<String> row : res){
+            performances.add(new Performance(Integer.parseInt(row.get(0)),Integer.parseInt(row.get(1)),Integer.parseInt(row.get(2)),Integer.parseInt(row.get(3)),9));
+        }
+        return performances;
+    }
+
 }

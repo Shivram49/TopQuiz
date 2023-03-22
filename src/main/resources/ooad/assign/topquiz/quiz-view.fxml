@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="questionLabel" layoutX="62.0" layoutY="105.0" prefHeight="51.0" prefWidth="404.0" style="-fx-background-color: red;" />
       <Button fx:id="button1" layoutX="61.0" layoutY="184.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="170.0" />
@@ -12,6 +12,7 @@
       <Button fx:id="button4" layoutX="301.0" layoutY="269.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="170.0" />
       <Button fx:id="nextButton" layoutX="504.0" layoutY="361.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="82.0" text="Next" />
       <Button fx:id="finishButton" layoutX="218.0" layoutY="362.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="110.0" text="Finish" />
-      <Label fx:id="studentName" layoutX="62.0" layoutY="33.0" prefHeight="26.0" prefWidth="205.0" text="student name : " />
+      <Label fx:id="studentName" layoutX="62.0" layoutY="33.0" prefHeight="26.0" prefWidth="162.0" text="student name : " />
+      <Label fx:id="timerLabel" layoutX="522.0" prefHeight="32.0" prefWidth="103.0" text="Time Left : " />
    </children>
 </AnchorPane>

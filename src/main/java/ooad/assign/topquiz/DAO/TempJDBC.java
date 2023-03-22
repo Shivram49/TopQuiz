@@ -17,9 +17,10 @@ public class TempJDBC {
 
     public static void main(String[] args) {
         Student currStudent = StudentService.login("Alice","password123");
-//        currStudent.attendTest();
-//        List<String> answers = new ArrayList<>(Arrays.asList("4", "5", "42", "Skin", "Bio", "100°C", "Cold", "Went", "Children"));
+        currStudent.attendTest();
+//        List<String> answers = new ArrayList<>(Arrays.asList("4", "5", "42", "Skin", "Bio", "100°C", "Cold", "Went", "Children","9"));
 //        currStudent.submitAnswers(answers);
+//        System.out.println(currStudent);
         System.out.println(currStudent.getPerformance());
 
     }

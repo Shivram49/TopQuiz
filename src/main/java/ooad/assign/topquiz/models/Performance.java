@@ -19,6 +19,7 @@ public class Performance {
         this.maxScore = maxScore;
     }
 
+
     public int getScore() {
         return score;
     }

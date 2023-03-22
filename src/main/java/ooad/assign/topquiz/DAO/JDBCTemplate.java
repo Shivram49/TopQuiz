@@ -1,6 +1,7 @@
 package ooad.assign.topquiz.DAO;
 import ooad.assign.topquiz.models.Question;
 
+import javax.xml.transform.Result;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -69,6 +70,32 @@ public class JDBCTemplate {
         }
     }
 
+    public List<String> getByIntValue(String sqlStatement,List<String> cols, List<String> values){
+        List<String> row = new ArrayList<>();
+        try (Connection conn = DriverManager.getConnection(this.url);
+             PreparedStatement stmt = conn.prepareStatement(sqlStatement)) {
+            for(int i = 0; i < values.size();i++) {
+                stmt.setInt(i + 1, Integer.parseInt(values.get(i)));
+            }
+            System.out.println("Statement being executed");
+            System.out.println(stmt);
+            try {
+                ResultSet rs = stmt.executeQuery();
+                while(rs.next()){
+                    for(String col : cols){
+                        row.add(rs.getString(col));
+                    }
+                }
+                return row;
+            } catch (SQLException e ) {
+                throw new Error("Problem", e);
+            }
+
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
+    }
+
 
     public String createInsertStatement(String tableName,List<String> cols,List<String> values){
         String sqlStatement = "insert into " + tableName + "(";
@@ -80,6 +107,12 @@ public class JDBCTemplate {
             sqlStatement += "'" + values.get(i) + "',";
         }
         sqlStatement += "'" + values.get(values.size()-1) + "')";
+        sqlStatement += "ON CONFLICT (student_id) DO UPDATE SET\n" +
+                "total_score = EXCLUDED.total_score,\n" +
+                "math_score = EXCLUDED.math_score,\n" +
+                "science_score = EXCLUDED.science_score,\n" +
+                "english_score = EXCLUDED.english_score,\n" +
+                "test_date = EXCLUDED.test_date";
         System.out.println(sqlStatement);
         return sqlStatement;
     }
@@ -103,6 +136,28 @@ public class JDBCTemplate {
              PreparedStatement stmt = conn.prepareStatement(sqlStatement)) {
             try {
                 stmt.executeUpdate();
+            } catch (SQLException e ) {
+                throw new Error("Problem", e);
+            }
+
+        } catch (SQLException e) {
+            throw new Error("Problem", e);
+        }
+    }
+
+    public void upsert(String tableName,List<String> cols,List<String> values){
+        String sqlStatement = createSelectStatementWithWhereAnd(tableName,cols,values);
+        //upsert code
+        try (Connection conn = DriverManager.getConnection(this.url);
+             PreparedStatement stmt = conn.prepareStatement(sqlStatement)) {
+            try {
+                for(int i = 0; i < values.size();i++) {
+                    stmt.setString(i + 1, values.get(i));
+                }
+                ResultSet resultSet = stmt.executeQuery();
+                if(resultSet != null){
+
+                }
             } catch (SQLException e ) {
                 throw new Error("Problem", e);
             }

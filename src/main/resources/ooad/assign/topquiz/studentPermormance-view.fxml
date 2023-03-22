@@ -4,11 +4,21 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Label fx:id="titleLabel" alignment="BOTTOM_CENTER" layoutX="135.0" layoutY="70.0" prefHeight="32.0" prefWidth="283.0" text="Performance Analysis" textAlignment="CENTER" textFill="#a81414" />
-      <PieChart fx:id="pieChart" layoutX="118.0" layoutY="114.0" prefHeight="258.0" prefWidth="391.0" />
+      <PieChart fx:id="pieChart" layoutX="36.0" layoutY="153.0" prefHeight="268.0" prefWidth="283.0" />
       <Label fx:id="studentName" layoutX="67.0" layoutY="35.0" prefHeight="18.0" prefWidth="214.0" text="Student name : " />
       <Label fx:id="totalScore" layoutX="351.0" layoutY="36.0" prefHeight="18.0" prefWidth="194.0" text="TotalScore : " />
+      <BarChart fx:id="barChart" layoutX="371.0" layoutY="139.0" prefHeight="302.0" prefWidth="336.0">
+        <xAxis>
+          <CategoryAxis label="Students" side="BOTTOM" />
+        </xAxis>
+        <yAxis>
+          <NumberAxis label="Score" side="LEFT" />
+        </yAxis>
+      </BarChart>
+      <Button id="reattemptButton" fx:id="reattemptButton" layoutX="579.0" layoutY="66.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="98.0" text="Reattempt test" />
+      <Button id="Logout" fx:id="logoutButton" layoutX="579.0" layoutY="32.0" mnemonicParsing="false" prefHeight="0.0" prefWidth="98.0" text="Logout" />
    </children>
 </AnchorPane>
