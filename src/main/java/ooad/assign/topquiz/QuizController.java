@@ -48,7 +48,7 @@ public class QuizController  {
     @FXML
     private Label timerLabel;
 
-    private static final Integer STARTTIME = 5;
+    private static final Integer STARTTIME = 120;
     private Timeline timeline;
     private Integer timeSeconds = STARTTIME;
 
